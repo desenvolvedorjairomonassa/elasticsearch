@@ -1,0 +1,63 @@
+GET populacao/_search
+{
+  "query": {
+    "range" : {
+      "Total Population": {
+        "lte": 100
+      }
+    }
+    
+  }
+}
+
+GET populacao/_search
+{
+  "query": {
+    "range" : {
+      "Median Age": {
+        "gt": 70
+      }
+    }
+    
+  }
+}
+
+GET populacao/_search
+{
+  "query": {
+    "range" : {
+      "Zip Code": {
+        "gt": 90056,
+        "lt": 90067
+      }
+    }
+    
+  }
+}
+
+get bolsa/_search
+{
+  "query" : {
+    "range": {
+      "timestamp": {
+        "gte": "2019-01-01",
+        "lte": "2019-03-01"
+        , "format": "yyyy-MM-d"
+      }
+    }
+  }
+}
+
+
+get bolsa/_search
+{
+  "query" : {
+    "range": {
+      "timestamp": {
+        "gte": "2019-01-01",
+        "lte": "now"
+        , "format": "yyyy-MM-d"
+      }
+    }
+  }
+}
