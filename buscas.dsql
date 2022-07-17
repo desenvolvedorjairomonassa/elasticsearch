@@ -1,0 +1,102 @@
+Get produto/_search 
+{
+	"query": {
+		"term": {
+			"nome" : {
+				"value": "mouse"
+			}
+		}
+	}
+}
+
+Get produto/_search 
+{
+	"query": {
+		"terms": {
+			"nome" : ["mouse","teclado"]
+		}
+	}
+}
+
+Get produto/_search
+{
+  "query": {
+    "constant_score": {
+      "filter": {
+        "term": {
+          "nome": "mouse"
+         }
+        }
+      }
+    }
+  }
+}
+
+Get produto/_search
+{
+  "query": {
+    "constant_score": {
+      "filter": {
+        "terms": {
+          "nome": ["mouse","teclado"]
+         }
+        }
+      }
+    }
+  }
+}
+
+Get produto/_search 
+{
+	"query": {
+		"match" : {
+			"descricao": "USB"
+		}
+	}
+}
+
+Get produto/_search 
+{
+	"query": {
+		"bool": {
+			"must": [{
+				"match" : {
+					"descricao": "USB"
+				}
+				
+			}],
+			"must_not" : {
+				"match" : {
+					"descricao": "linux"
+				}
+			}
+			
+		}
+	}
+}
+Get produto/_search 
+{
+ "query" : {
+	"bool": {
+		"should": [
+			{
+				"match": {
+					"nome": "memória"
+				}
+			},
+			{
+				"match" : {
+					"descricao": "USB"
+				}
+			}
+		],
+		"must_not":  [
+			{
+			 "match" : {
+				"descricao" : "linux"
+			 }
+			}
+		]
+	}
+ } 
+}
