@@ -1,0 +1,105 @@
+get bolsa/_search
+{ 
+    "media" : {
+      "avg": {
+        "field": "volume"
+      }
+    }
+  }
+}
+get bolsa/_search
+{ "size": 0,
+  "aggs": {
+    "media" : {
+      "stats": {
+        "field": "close"
+      }
+    }
+  }
+}
+get bolsa/_search
+{ 
+  "query": {
+    "range": {
+      "@timestamp": {
+        "gte": "2019-04-01",
+        "lte": "now"
+      }
+    }
+  }
+}
+
+get bolsa/_search
+{ 
+  "query": {
+    "range": {
+      "@timestamp": {
+        "gte": "2019-04-01",
+        "lte": "now"
+      }
+    }
+  },
+  "aggs": {
+    "estatistica"  : {
+      "stats": {
+        "field": "open"
+      }
+    }
+  }
+}
+
+get bolsa/_search
+{ 
+  "size":0,
+  "aggs": {
+    "mediana" : {
+      "percentiles": {
+        "field": "open",
+        "percents": [
+          1,
+          5,
+          25,
+          50,
+          75,
+          95,
+          99
+        ]
+      }
+    }
+  }
+}
+
+get bolsa/_search
+{
+  "size": 0,
+  "aggs": {
+    "doc_anos":{
+      "date_histogram": {
+        "field": "@timestamp",
+        "calendar_interval": "year"
+      }
+    }
+    
+  }
+}
+
+
+get bolsa/_search
+{
+  "size": 0,
+  "aggs": {
+    "qtde_2anos":{
+      "date_range": {
+        "field": "@timestamp",
+        "ranges": [
+          {
+            "from": "now-2y"
+            , "to": "now"
+          }
+        ]
+        
+      }
+    }
+    
+  }
+}
