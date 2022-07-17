@@ -1,0 +1,36 @@
+get produto/_count
+DELETE produto/_doc/3
+
+GET produto/_doc/1
+POST produto/_update/3
+{
+  "doc":{
+    "qtde":30
+  }
+  
+}
+
+HEAD produto/_doc/3
+
+POST produto/_doc/3
+{
+  "nome": "hd",
+  "qtde": 20,
+  "descricao": "200 gb"
+}
+
+
+POST produto/_doc/2
+{
+  "nome": "monitor",
+  "qtde": 2,
+  "descricao": "20 polegadas"
+}
+
+
+POST produto/_doc/1
+{
+  "nome": "mouse",
+  "qtde": 50,
+  "descricao": "com fio usb"
+}
