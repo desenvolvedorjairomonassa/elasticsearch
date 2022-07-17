@@ -1,0 +1,50 @@
+get produto/_search
+{
+  "query": {
+    "match": {
+      "descricao": {
+        "query": "windows linux usb",
+        "minimum_should_match": "50%" 
+      }
+    
+      
+    }
+  }
+}
+get produto/_search
+{
+  "query": {
+    "match": {
+      "descricao": {
+        "query": "windows linux usb",
+        "minimum_should_match": 2
+      }
+    
+      
+    }
+  }
+}
+
+get produto/_search
+{
+  "query": {
+    "match": {
+      "descricao": "windows linux usb"
+    
+      
+    }
+  }
+}
+
+get produto/_search 
+{
+  "query": {
+    "match": {
+      "descricao": {
+        "query" : "windows linux",
+        "operator": "and"
+      }
+    }
+  }
+}
+
