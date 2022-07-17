@@ -1,0 +1,94 @@
+#usando kibana 
+GET produto/_search
+POST produto/_open
+GET produto/_search
+POST produto/_close
+
+get produto/_mapping
+POST _reindex
+{
+  "source": {
+    "index": "produto"
+  }
+  , "dest": {
+    "index": "produto2"
+  }
+}
+
+PUT produto2/_mapping
+{
+  "properties": {
+    "data": {
+      "type": "date"
+    },
+    "descricao": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
+    },
+    "nome": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
+    },
+    "qtde": {
+      "type": "short"
+    }
+  }
+}
+put produto2
+{
+  
+}
+PUT produto/_doc/6
+{
+  "nome": "teclado",
+  "qtde": 100,
+  "descricao": "usb",
+  "data": "2020-09-18"
+}
+
+put produto/_mapping 
+{
+  "properties" : {
+    "data": {
+      "type": "date"
+    }
+  }
+    
+}
+  
+get produto/_mapping/field/nome
+get produto/_mapping
+get produto/_settings
+
+GET produto/_search?q=nome:mouse&q=nome:monitor
+GET produto/_search?q=qtde:20
+GET produto/_search?q=nome:mouse
+
+
+GET concessionaria2/_search
+GET populacao/_count
+GET concessionaria2/_count
+
+get produto/_count
+DELETE produto/_doc/3
+
+GET produto/_doc/1
+POST produto/_update/3
+{
+  "doc":{
+    "qtde":30
+  }
+  
+}
+
+HEAD produto/_doc/3
