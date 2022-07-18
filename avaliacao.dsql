@@ -1,0 +1,139 @@
+POST avaliacao/_open
+
+POST avaliacao/_doc
+{
+  "nome": "Elastic", "nota":"10"
+}
+POST avaliacao/_doc
+{
+  "nome": "Logstash", "nota":"8"
+}
+POST avaliacao/_doc
+{
+  "nome": "Kibana", "nota":"5"
+}
+POST avaliacao/_doc
+{
+  "nome": "Beats", "nota":"6"
+}
+
+POST avaliacao/_count
+#pesquisa should with not match
+get avaliacao/_search
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "match": {
+            "nome": "Elastic"
+          }
+          
+        },
+        {
+          "match": {
+            "nota": "5, 8"
+          }
+        }
+      ],
+      "must_not": [
+        {
+          "match": {
+            "nota": "10"
+          }
+        }
+      ]
+    }
+  }
+}
+#### pesquisa should
+get avaliacao/_search
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "match": {
+            "nome": "Kibana"
+          }
+          
+        },
+        {
+          "match": {
+            "nota": "5, 6"
+          }
+        }
+      ]
+    }
+  }
+}
+get avaliacao/_search
+{
+  "query": {
+    "range": {
+      "nota": {
+        "gte": 6
+      }
+    }
+  }
+}
+
+
+
+get avaliacao/_search
+{
+  "query": {
+    "range": {
+      "nota": {
+        "gte": 6
+      }
+    }
+  }
+}
+get avaliacao/_search
+{
+  "query": {
+    "range": {
+      "nota": {
+        "gte": 5
+      }
+    }
+  }
+}
+
+
+get avaliacao/_search
+{
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "term": {
+            "nome": "beats"
+          }
+        }
+      ]
+    }
+  }
+}
+
+get avaliacao/_search
+{
+  "query": {
+    "constant_score": {
+      "filter": 
+        {
+          "term": {
+            "nome": "beats"
+          }
+        }
+      
+    }
+  }
+}
+
+
+
+
+
+
